@@ -1,0 +1,52 @@
+#+TITLE: mdinmuseum: Displaying Data
+#+AUTHOR: Joshua Ramon Enslin
+#+DESCRIPTION:
+#+KEYWORDS: museum-digital, exhibition, museum visit
+#+LANGUAGE:  de
+
+mdinmuseum is a small web app for displaying one museum's data from [[https://www.museum-digital.de/][museum-digital]]. The basic idea is to provide smaller museums with an equivalent of an in-museum app with little additional work required. It is based on the public API of museum-digital.
+
+While it is almost completely written in JavaScript, it requires a server running PHP for settings.
+
+** Features
+
+- An interface to the data of a single museum from museum-digitial.
+- Event and exhibition calendar
+- "Tour": Opening object information based on markers (requires [[https://github.com/jcmellado/js-aruco][js-aruco]])
+
+** Installation
+
+To begin the installation, clone this repository and js-aruco (the tour feature can't be disabled yet).
+
+#+BEGIN_SRC
+git clone https://github.com/jrenslin/mdinmuseum.git .
+cd static
+git clone https://github.com/jcmellado/js-aruco.git
+cd ..
+#+END_SRC
+
+Next, the configuration-relevant files need to be created.
+
+#+BEGIN_SRC
+cp markers.json.sample markers.json && cp config.php.sample config.php
+#+END_SRC
+
+The source instance of museum-digital and the museum ID need to be entered in ~config.php~. Using markers.json, [[http://diogok.net/js-aruco-markers/index.html][aruco markers]] can be mapped to object IDs.
+
+** To-Do
+
+- Make it possible to toggle the tour feature using ~config.json~.
+
+** Notes
+
+Fonts and icons have been removed from the public repository.
+
+** Credits
+
+- Photos
+  + [[https://unsplash.com/photos/n31JPLu8_Pw][Ryoji Iwata / Unsplash]]
+  + [[https://unsplash.com/photos/v490AlsqbTs][julian mora / Unsplash]]
+  + [[https://unsplash.com/photos/_nm_mZ4Cs2I][Rey Seven / Unsplash]]
+  + [[https://unsplash.com/photos/Y3KEBQlB1Zk][Erol Ahmed / Unsplash]]
+  + Steven Garcia / Unsplash
+

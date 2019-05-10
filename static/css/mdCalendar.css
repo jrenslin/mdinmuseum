@@ -1,0 +1,152 @@
+/**
+ * CSS file for mdCalendar.
+ */
+
+.mdCalendar { display: block; }
+.mdCTable   { width: 100%; table-layout: fixed; font-size: .9em; border-collapse: collapse; }
+
+/**
+ * Table
+ */
+
+.mdCTable thead tr { border: 1px solid #424242; }
+
+.mdCTable th { color: #646464; font-weight: normal; text-align: center; }
+.mdCTable td { padding: 0; height: 10em; background: #212121; border: 1px solid #424242; vertical-align: top; }
+.mdCTable *:hover { z-index: 2; }
+
+.mdCTable time { display: block; color: #DDD; border-bottom: 1px dashed #424242; font-weight: bold;
+                 cursor: pointer; transition: background .4s, color .4s; }
+.mdCTable time:hover { background: #4f5b62; color: #FFF; }
+.mdCTable td > *     { display: block; padding: .3em .5em; line-height: 1.2em; }
+
+.mdCTable td > a     { position: relative; margin: .2em; padding-left: .7em;
+                       background: rgba(0, 0, 0, .2); color: #DDD; border: 1px solid #424242;
+                       cursor: pointer; transition: background .4s, color .4s; }
+.mdCTable td > a:hover { background: #333; color: #FFF; z-index: 2; }
+
+.mdCTable td > a:before { content: " "; position: absolute; left: 0; top: 0; width: .5em; height: 100%; }
+
+.mdCTable .mdCToday      { background: #4f5b62; }
+.mdCTable .mdCOtherMonth { color: #FFF; background: #263238; }
+
+/**
+ * Table head.
+ */
+
+.mdCTitleLine     { display: table; width: 100%; margin: .5em 0; padding: 0; }
+.mdCTitleLine > * { display: table-cell; vertical-align: middle; }
+
+.mdCTitleLine > h3 { font-weight: normal; color: #DDD; }
+
+.mdCNav { width: 200px; color: #DDD; text-align: right; }
+
+.mdCNav > *        { transition: background .4s, color .4s; font-size: 1em; padding: .5em; }
+.mdCNav > *:hover  { background: #4f5b62; color: #FFF; }
+.mdCNavPrev:before { content: "<"; }
+.mdCNavNext:before { content: ">"; }
+
+/**
+ * Alternative display of events in case there are too many for a day.
+ */
+
+.mdCTable td.mdCManyElements > a { display: inline-block; height: 1.1em; width: 1.1em; }
+.mdCTable td.mdCManyElements > a:before { width: 100%; }
+.mdCTable td.mdCManyElements > a span   { display: none; }
+
+@media screen and (max-width: 75em) {
+    .mdCTable td > a { display: inline-block; height: 1.1em; width: 1.1em; }
+    .mdCTable td > a span { display: none; }
+    .mdCTable td > a:before { width: 100%; }
+}
+
+/**
+ * Tooltips
+ */
+.mdCToolTip { position: absolute; top: calc(100% + 22px); left: 50%; transform: translate(-50%, 0);
+              width: 300px; padding: 1em 0;
+              background: #FFF; border: 1px solid #646464;
+              z-index: 1000; animation: fade-in-tooltip .4s; }
+
+.mdCToolTip:before,
+.mdCToolTip:after { content: " "; position: absolute; bottom: calc(100% - 1px); left: 50%; transform: translate(-50%, 0);
+                    display: block; width: 0; height: 0;
+                    border-left: 21px solid transparent; border-right: 21px solid transparent;
+                    border-bottom: 21px solid #FFF; z-index: 1002; }
+.mdCToolTip:after { border-left: 22px solid transparent; border-right: 22px solid transparent;
+                    border-bottom: 22px solid #646464; z-index: 1001; }
+.mdCToolTip tr *  { height: auto; padding: .5em; vertical-align: top; text-align: left; color: #424242; border: 0; }
+.mdCToolTip tr:first-child * { padding-top: 1em; }
+.mdCToolTip tr:last-child  * { padding-bottom: 1em; }
+.mdCToolTip td { background: #FFF; }
+
+/**
+ * Overlay
+ */
+
+#mdCOverlay { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
+              max-height: 80vh; width: 600px; max-width: 80vw; background: #FFF;
+              box-shadow: 2px 2px 4px #D6D6D6, -2px -2px 4px #D6D6D6;
+              overflow-y: auto; z-index: 1003; }
+
+.mdCOverlayTitleBar     { display: table; width: 100%; }
+.mdCOverlayTitleBar > * { display: table-cell; padding: .5rem 1.5rem; background: #EEE; color: #000; }
+
+.mdCOverlayClose        { width: 5em; text-align: right; }
+.mdCOverlayClose:before { content: "x"; display: inline-block; padding: .1em .7em .3em .7em;
+                          background: #03A9F4; color: #FFF; text-align: center;
+                          border-radius: 100%; cursor: pointer; transition: background .4s; color .4s; }
+.mdCOverlayClose:hover:before { background: #FFF; color: #03A9F4; }
+
+#mdCOverlay ul { list-style: none; margin: 1em 1.5rem; padding: 0; }
+#mdCOverlay li { margin: 0; padding: 1em 0; border-bottom: 1px solid #D6D6D6; }
+#mdCOverlay li > a:first-child { color: #424242; font-weight: bold; }
+
+/**
+ * @var {string[]} colorScheme Material design colors as taken from https://material.io/design/color/the-color-system.html#tools-for-picking-colors
+ */
+
+.color0:before { background: #F44336; }
+.color1:before { background: #E53935; }
+.color2:before { background: #D32F2F; }
+.color3:before { background: #C62828; }
+.color4:before { background: #B71C1C; }
+
+.color5:before { background: #3F51B5; }
+.color6:before { background: #3949AB; }
+.color7:before { background: #303F9F; }
+.color8:before { background: #283593; }
+.color9:before { background: #1A237E; }
+
+.color10:before { background: #2196F3; }
+.color11:before { background: #1E88E5; }
+.color12:before { background: #1976D2; }
+.color13:before { background: #1565C0; }
+.color14:before { background: #0D47A1; }
+
+.color15:before { background: #03A9F4; }
+.color16:before { background: #039BE5; }
+.color17:before { background: #0288D1; }
+.color18:before { background: #0277BD; }
+.color19:before { background: #01579B; }
+
+.color20:before { background: #00BCD4; }
+.color21:before { background: #00ACC1; }
+.color22:before { background: #0097A7; }
+.color23:before { background: #00838F; }
+.color24:before { background: #006064; }
+
+.color25:before { background: #4CAF50; }
+.color26:before { background: #43A047; }
+.color27:before { background: #388E3C; }
+.color28:before { background: #2E7D32; }
+.color29:before { background: #1B5E20; }
+
+/**
+ * Animations
+ */
+
+@keyframes fade-in-tooltip {
+    from { top: calc(100% + 19px); opacity: 0.1; }
+    to   { top: calc(100% + 22px); opacity: 1.0; }
+}
